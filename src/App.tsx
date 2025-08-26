@@ -11,11 +11,11 @@ function App() {
     const session = await res.json();
     console.log("Session",session)
     if(session){
-      window.location.href="http://localhost:3000/api/auth/signout?callbackUrl=https://webscrapper-zx22.onrender.com"
+      window.location.href="http://localhost:3000/api/auth/signout?callbackUrl=https://webscrapper-1-mjdo.onrender.com"
     }
 
     if (!session ||!session.user) {
-      window.location.href = "http://localhost:3000/api/auth/signin?callbackUrl=https://webscrapper-zx22.onrender.com";
+      window.location.href = "http://localhost:3000/api/auth/signin?callbackUrl=https://webscrapper-1-mjdo.onrender.com";
       return;
     }
   }
