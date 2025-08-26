@@ -1,6 +1,7 @@
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useState } from 'react';
 
 function App() {
   const fetchRole = async () => {
@@ -19,6 +20,16 @@ function App() {
       return;
     }
   }
+  const fetchCard=async()=>{
+    const res=await fetch(`http://localhost:3000/api/auth/session`,{
+      method:"GET",
+      credentials:"include"
+    });
+    const response=await res.json();
+    setData(response.data);
+
+  }
+  const [data,setData]=useState([]);
   return (
     <>
       <div>
@@ -34,6 +45,10 @@ function App() {
         <button onClick={fetchRole}>
           count
         </button>
+        <button className='card'
+        onClick={fetchCard}>
+          role
+        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -41,6 +56,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      {data.map((d:any)=>{
+        <h1>{d.name}</h1>
+      })}
     </>
   )
 }
