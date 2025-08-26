@@ -1,12 +1,10 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
   const fetchRole = async () => {
-    const res = await fetch(`http://localhost:3000/api/role/getall`, {
+    const res = await fetch(`http://localhost:3000/api/auth/session`, {
       method: "GET",
       credentials: 'include'
     });
@@ -34,7 +32,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={fetchRole}>
-          count is {count}
+          count
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
