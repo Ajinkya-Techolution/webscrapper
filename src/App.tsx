@@ -12,16 +12,17 @@ function App() {
     const session = await res.json();
     console.log("Session",session)
     if(session){
-      window.location.href="http://localhost:3000/api/auth/signout?callbackUrl=https://webscrapper-1-mjdo.onrender.com"
+      window.location.href="http://localhost:3000/api/auth/signout?callbackUrl=https://webscrapper-1-mjdo.onrender.com/"
     }
 
     if (!session ||!session.user) {
-      window.location.href = "http://localhost:3000/api/auth/signin?callbackUrl=https://webscrapper-1-mjdo.onrender.com";
+      window.location.href = "http://localhost:3000/api/auth/signin?callbackUrl=https://webscrapper-1-mjdo.onrender.com/";
       return;
     }
   }
+  const [deb,setDeb]=useState(true);
   const fetchCard=async()=>{
-    const res=await fetch(`http://localhost:3000/api/auth/session`,{
+    const res=await fetch(`http://localhost:3000/api/role/getall`,{
       method:"GET",
       credentials:"include"
     });
@@ -46,19 +47,29 @@ function App() {
           count
         </button>
         <button className='card'
-        onClick={fetchCard}>
+        onClick={()=>{
+          if(deb){
+            fetchCard()
+            setDeb(false);
+          }else{
+            setData([]);      
+            setDeb(true);
+
+          }
+        }}>
           role
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
+      {data.map((d:any)=>{
+        return <h6>{d.name}</h6>
+      })}
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      {data.map((d:any)=>{
-        <h1>{d.name}</h1>
-      })}
+      
     </>
   )
 }
