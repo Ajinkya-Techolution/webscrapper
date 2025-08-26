@@ -12,14 +12,14 @@ function App() {
     });
     const session = await res.json();
     console.log("Session",session)
-    // if(session){
-    //   window.location.href="http://localhost:3000/api/auth/signout?callbackUrl=https://rgw8sqjh-5173.inc1.devtunnels.ms/"
-    // }
+    if(session){
+      window.location.href="http://localhost:3000/api/auth/signout?callbackUrl=https://webscrapper-zx22.onrender.com"
+    }
 
-    // if (!session ||!session.user) {
-    //   window.location.href = "http://localhost:3000/api/auth/signin?callbackUrl=https://rgw8sqjh-5173.inc1.devtunnels.ms/";
-    //   return;
-    // }
+    if (!session ||!session.user) {
+      window.location.href = "http://localhost:3000/api/auth/signin?callbackUrl=https://webscrapper-zx22.onrender.com";
+      return;
+    }
   }
   return (
     <>
